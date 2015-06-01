@@ -33,7 +33,10 @@ var fancyProps = {
 
         if(element.nodeName === 'INPUT' && inputType == 'date'){
             if(arguments.length === 2){
-                return new Date(element.value);
+                if (!element.value) {
+                    return;
+                }
+                return new Date(element.value).toISOString();
             }
             value = new Date(value);
             if(isNaN(value)){
